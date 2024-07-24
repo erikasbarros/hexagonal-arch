@@ -8,10 +8,11 @@ import com.barros.hexagonal.application.ports.in.DeleteCustomerByIdInputPort;
 import com.barros.hexagonal.application.ports.in.FindCustomerByIdInputPort;
 import com.barros.hexagonal.application.ports.in.InsertCustomerInputPort;
 import com.barros.hexagonal.application.ports.in.UpdateCustomerInputPort;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/customers")
@@ -45,7 +46,7 @@ public class CustomerController {
         return ResponseEntity.ok().body(customerResponse);
     }
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable final String id, @Valid @RequestBody CustomerRequest request) {
         Customer customer = customerMapper.toCustomer(request);
         customer.setId(id);
@@ -53,7 +54,7 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable final String id) {
         deleteCustomerByIdInputPort.delete(id);
         return ResponseEntity.noContent().build();
