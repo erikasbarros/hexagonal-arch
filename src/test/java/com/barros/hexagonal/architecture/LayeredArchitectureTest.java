@@ -3,11 +3,9 @@ package com.barros.hexagonal.architecture;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
-@SpringBootTest
 @AnalyzeClasses(packages = "com.barros.hexagonal")
 public class LayeredArchitectureTest {
 
